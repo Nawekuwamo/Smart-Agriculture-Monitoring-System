@@ -1,0 +1,20 @@
+CREATE DATABASE IF NOT EXISTS smart_agriculture
+  CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE smart_agriculture;
+
+CREATE TABLE IF NOT EXISTS users (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  full_name VARCHAR(120) NOT NULL,
+  email VARCHAR(190) NOT NULL UNIQUE,
+  password_hash VARCHAR(255) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS sensor_readings (
+  id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  moisture_percent DECIMAL(5,2) NULL,
+  soil_status VARCHAR(40) NULL,
+  pump_status VARCHAR(40) NULL,
+  recorded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  INDEX idx_recorded_at (recorded_at)
+);
